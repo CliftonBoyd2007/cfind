@@ -38,15 +38,15 @@ Program execution must not continue after any global flag is set and the method 
 
 ## 2.2 Error Handling
 
-## 2.2.1 User Input Validation & Resolution
+### 2.2.1 User Input Validation & Resolution
 
 - Argument Validation: If <pattern> is empty or only contains whitespace, the program must print an error to stderr and exit.
-Exit Code: 2
+- Exit Code: 2
 
 - Argument Resolution: If <dir> is omitted, the tool must run in the current directory.
 
 - Argument Validation: If <dir> does not exist, or the user does not have sufficient permissions to access it, the tool must print a message to stderr and exit.
-Exit Code: 2
+- Exit Code: 2
 
 - Argument Validation: If <dir> is a file, the tool must print a message to stderr and exit.
 Exit Code: 2.
@@ -60,20 +60,23 @@ Exit Code: 0
 
 ### 2.2.3 Error Styling and Display
 
-•  Standard Streams: All error messages, warnings, and usage/help text must be sent to 
-stderr.
+- Error Streams: All errors, warnings, and help/usage messages must be printed to stderr.
 
-•  The Quoting Rule: Any user-provided input (patterns, paths, or flags) referenced in an error message 
-must be enclosed in single quotes ( ' ).
-
-•  Example: Invalid pattern: ' ' .
-
-•  Minimalist Feedback (Flags): If an invalid flag is provided, the tool must display the specific error and a list of valid flags only. The full help
-manual should not be printed.
-
-•  Example: Invalid flag: '--wrong' .
-
-•  Exit Code: 2.
+- Error Output: All user input that appears in error messages must appear in single quotes. 
+### Examples
+- Invalid Flag Set: 
+cfind <pattern> <dir> --invalid_flag 
+Expected Output: "Invalid Option: '--invalid_flag'"
+- Directory Does not Exist 
+cfind <pattern> /path/to/dir/that/does/not/exist 
+Expected Output: "Directory, '/path/to/dir/that/does/not/exist', does not exist."
 
 
---------------------------------------------------
+## 3. Technical Architecture 
+### 3.1. Search Logic 
+
+**Simple Implementation for Now:**
+Search Strategy: Look for files whose name contains the pattern specified by the user; for example:
+cfind "alpha" 
+Output:
+alphabet.txt myalpha.txt
