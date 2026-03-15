@@ -2,6 +2,8 @@
 using System.CommandLine;
 using System.CommandLine.Parsing;
 using System.CommandLine.Invocation;
+using cfind.Engine;
+using System.Linq.Expressions;
 
 class Program
 {
@@ -16,25 +18,67 @@ class Program
         // We will define optional flags later
         // Arguments:
         // pattern, dir 
-        Argument<String> patternArg = new("pattern")
+        var patternArg = new Argument<string>("pattern")
         {
             Description = "The pattern to search for."
         };
-        Argument<String> dirArg = new("dir")
+        var dirArg = new Argument<string>("dir")
         {
-            Description = "The directory to search."
+            Description = "The directory to perform the search."
         };
-        // Define the root command and add the above arguments to it.
-        var rootCmd = new RootCommand("Finds files whose names contains the specified pattern.");
+        var flatOption = new Option<bool>("--flat")
+        {
+            Description = "Disable recursive search."
+        };
+        var verboseOption = new Option<bool>("--verbose", "-v")
+        {
+            Description = "Toggle more detailed output."
+        };
+        var rootCmd = new RootCommand();
         rootCmd.Arguments.Add(patternArg);
         rootCmd.Arguments.Add(dirArg);
+        rootCmd.Options.Add(flatOption);
+        rootCmd.Options.Add(verboseOption);
+
+
+
+
 
         rootCmd.SetAction(parseResult =>
         {
-            String? pattern = parseResult.GetValue(patternArg);
-            String? dir = parseResult.GetValue(dirArg);
-            // Other code not implemented yet. Argument parsing works.
+            string? pattern = parseResult.GetValue(patternArg);
+            string? dir = parseResult.GetValue(dirArg);
+            bool flat = parseResult.GetValue(flatOption);
+            bool verbose = parseResult.GetValue(verboseOption);
+            try
+            {
+                var scanner = new FileScanner(dir, pattern, flat, verbose);
+                int i = 0;
+                foreach (var file in scanner.EnumerateMatches())
+                {
+                    Console.WriteLine(file);
+                    i++;
+                }
+                if (i == 1)
+                {
+                    Console.WriteLine($"{i} file or directory found.");
+                }
+                else
+                {
+                    Console.WriteLine($"{i} files and directories found.");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"An error has occurred: {ex.Message}");
+
+            }
+
+
         });
+
         ParseResult parseResult = rootCmd.Parse(args);
 
         return parseResult.Invoke();
