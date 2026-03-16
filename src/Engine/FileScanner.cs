@@ -38,7 +38,8 @@ public class FileScanner
         {
             IgnoreInaccessible = true,
             RecurseSubdirectories = !flat,
-            AttributesToSkip = FileAttributes.System,
+            AttributesToSkip = FileAttributes.System
+ 
         };
 
     }

@@ -53,19 +53,11 @@ class Program
             try
             {
                 var scanner = new FileScanner(dir, pattern, flat, verbose);
-                int i = 0;
+
                 foreach (var file in scanner.EnumerateMatches())
                 {
-                    Console.WriteLine(file);
-                    i++;
-                }
-                if (i == 1)
-                {
-                    Console.WriteLine($"{i} file or directory found.");
-                }
-                else
-                {
-                    Console.WriteLine($"{i} files and directories found.");
+                    Console.Write(file + " ");
+
                 }
 
 
@@ -73,7 +65,7 @@ class Program
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"An error has occurred: {ex.Message}");
-
+                Environment.Exit(1); 
             }
 
 
