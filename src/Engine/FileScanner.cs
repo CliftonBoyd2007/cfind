@@ -9,14 +9,14 @@ public class FileScanner
     private readonly string _dir;
     private readonly string _pattern;
     private readonly bool _flat;
-    private readonly bool _verbose;
+
     private readonly EnumerationOptions _options;
-    public FileScanner(string dir, string pattern, bool flat, bool verbose)
+    public FileScanner(string dir, string pattern, bool flat)
     {
 
         _flat = flat;
 
-        _verbose = verbose;
+
 
         _dir = dir;
 

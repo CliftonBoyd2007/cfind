@@ -43,7 +43,7 @@ class Program
         rootCmd.Arguments.Add(patternArg);
         rootCmd.Arguments.Add(dirArg);
         rootCmd.Options.Add(flatOption);
-        rootCmd.Options.Add(verboseOption);
+        
 
 
         rootCmd.SetAction(parseResult =>
@@ -51,10 +51,10 @@ class Program
             string? pattern = parseResult.GetValue(patternArg);
             string? dir = parseResult.GetValue(dirArg);
             bool flat = parseResult.GetValue(flatOption);
-            bool verbose = parseResult.GetValue(verboseOption);
+            
             try
             {
-                var scanner = new FileScanner(dir!, pattern!, flat, verbose);
+                var scanner = new FileScanner(dir!, pattern!, flat);
 
                 foreach (var file in scanner.EnumerateMatches())
                 {
