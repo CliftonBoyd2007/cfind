@@ -5,12 +5,15 @@ using System.CommandLine.Invocation;
 using cfind.Engine;
 using System.Linq.Expressions;
 
+namespace cfind.BuildCommand;
+
 class Program
 {
     static int Main(string[] args)
     {
         return BuildRootCmd(args);
     }
+
     private static int BuildRootCmd(String[] args)
     {
         // Define the structure of the root command 
@@ -24,7 +27,9 @@ class Program
         };
         var dirArg = new Argument<string>("dir")
         {
-            Description = "The directory to perform the search."
+            Description = "The directory to perform the search.",
+            DefaultValueFactory = _ =>
+                Directory.GetCurrentDirectory()
         };
         var flatOption = new Option<bool>("--flat")
         {
@@ -34,14 +39,11 @@ class Program
         {
             Description = "Toggle more detailed output."
         };
-        var rootCmd = new RootCommand();
+        var rootCmd = new RootCommand("A utility that finds files based on a pattern within their name.");
         rootCmd.Arguments.Add(patternArg);
         rootCmd.Arguments.Add(dirArg);
         rootCmd.Options.Add(flatOption);
         rootCmd.Options.Add(verboseOption);
-
-
-
 
 
         rootCmd.SetAction(parseResult =>
@@ -52,31 +54,22 @@ class Program
             bool verbose = parseResult.GetValue(verboseOption);
             try
             {
-                var scanner = new FileScanner(dir, pattern, flat, verbose);
+                var scanner = new FileScanner(dir!, pattern!, flat, verbose);
 
                 foreach (var file in scanner.EnumerateMatches())
                 {
                     Console.Write(file + " ");
-
                 }
-
-
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"An error has occurred: {ex.Message}");
-                Environment.Exit(1); 
+                Environment.Exit(1);
             }
-
-
         });
 
         ParseResult parseResult = rootCmd.Parse(args);
 
         return parseResult.Invoke();
-
-
-
-
     }
 }

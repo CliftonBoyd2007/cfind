@@ -17,15 +17,9 @@ public class FileScanner
         _flat = flat;
 
         _verbose = verbose;
-        if (string.IsNullOrEmpty(dir) || string.IsNullOrWhiteSpace(dir))
-        {
-            _dir = Directory.GetCurrentDirectory();
 
-        }
-        else
-        {
-            _dir = dir;
-        }
+        _dir = dir;
+
         if (pattern is null)
         {
             _pattern = "";
@@ -39,7 +33,7 @@ public class FileScanner
             IgnoreInaccessible = true,
             RecurseSubdirectories = !flat,
             AttributesToSkip = FileAttributes.System
- 
+
         };
 
     }
