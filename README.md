@@ -40,7 +40,8 @@ cfind obj . # Search for files or directories in the current folder with 'obj' i
 ## Optional Flags
 
 --flat Disables recursive search; only searches the top-level directory. 
-this is useful if you know that a file with a specific pattern is in the top-level directory and you want to avoid extra output from files within its subdirectories that get printed to the console.
+
+This is useful if you know that a file with a specific pattern is in the top-level directory and you want to avoid extra output from files within its subdirectories that get printed to the console.
 
 Example Usage:
 
@@ -61,7 +62,9 @@ cfind 2022 ./testDir --flat
 ```
 
 Without --flat:
+
 Output: ./2022-01-18.txt ./dir2/2022-01--08.txt 
+
 ### Other Flags 
 
 -?, -h, --help Print usage information and exit.

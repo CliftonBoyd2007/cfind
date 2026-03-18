@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "rgxnh6FQPmo=",
+  "success": true,
+  "projectFilePath": "/Users/cliftonboyd/Projects/cfind/cfind.csproj",
+  "expectedPackageFiles": [
+    "/Users/cliftonboyd/.nuget/packages/microsoft.dotnet.ilcompiler/8.0.22/microsoft.dotnet.ilcompiler.8.0.22.nupkg.sha512",
+    "/Users/cliftonboyd/.nuget/packages/microsoft.net.illink.tasks/8.0.22/microsoft.net.illink.tasks.8.0.22.nupkg.sha512",
+    "/Users/cliftonboyd/.nuget/packages/system.commandline/2.0.5/system.commandline.2.0.5.nupkg.sha512",
+    "/Users/cliftonboyd/.nuget/packages/microsoft.netcore.app.ref/8.0.22/microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "/Users/cliftonboyd/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
+    "/Users/cliftonboyd/.nuget/packages/runtime.osx-x64.microsoft.dotnet.ilcompiler/8.0.22/runtime.osx-x64.microsoft.dotnet.ilcompiler.8.0.22.nupkg.sha512",
+    "/Users/cliftonboyd/.nuget/packages/microsoft.netcore.app.host.osx-x64/8.0.22/microsoft.netcore.app.host.osx-x64.8.0.22.nupkg.sha512"
+  ],
+  "logs": []
+}
