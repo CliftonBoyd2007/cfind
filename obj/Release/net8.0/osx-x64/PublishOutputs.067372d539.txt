@@ -1,2 +1,0 @@
-/Users/cliftonboyd/Projects/cfind/bin/Release/net8.0/osx-x64/publish/cfind
-/Users/cliftonboyd/Projects/cfind/bin/Release/net8.0/osx-x64/publish/cfind.pdb
