@@ -43,7 +43,7 @@ class Program
         rootCmd.Arguments.Add(patternArg);
         rootCmd.Arguments.Add(dirArg);
         rootCmd.Options.Add(flatOption);
-        
+
 
 
         rootCmd.SetAction(parseResult =>
@@ -51,7 +51,7 @@ class Program
             string? pattern = parseResult.GetValue(patternArg);
             string? dir = parseResult.GetValue(dirArg);
             bool flat = parseResult.GetValue(flatOption);
-            
+
             try
             {
                 var scanner = new FileScanner(dir!, pattern!, flat);
